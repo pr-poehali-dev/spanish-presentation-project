@@ -97,5 +97,328 @@
 
   body {
     @apply bg-background text-foreground;
+    font-family: "Golos Text", sans-serif;
+  }
+}
+
+/* Presentation Layout */
+.presentation-root {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  background: #0a0e1a;
+}
+
+.slides-scroll {
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scrollbar-width: none;
+}
+
+.slides-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.slide-container {
+  width: 100%;
+  height: 100vh;
+  min-height: 100vh;
+  position: relative;
+  scroll-snap-align: start;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Grid overlay */
+.grid-overlay {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+}
+
+/* Navigation dots */
+.nav-dots {
+  position: fixed;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 100;
+}
+
+.nav-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.nav-dot:hover .nav-dot-label {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.nav-dot-label {
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%) translateX(5px);
+  white-space: nowrap;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.6);
+  opacity: 0;
+  transition: all 0.2s ease;
+  font-family: "IBM Plex Mono", monospace;
+}
+
+.nav-dot-active {
+  background: #c9a84c;
+  transform: scale(1.4);
+}
+
+/* Slide number */
+.slide-number {
+  position: absolute;
+  bottom: 28px;
+  right: 48px;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.2);
+  letter-spacing: 0.1em;
+}
+
+/* Typography */
+.title-main {
+  font-family: "Golos Text", sans-serif;
+  font-weight: 900;
+  font-size: clamp(3rem, 8vw, 6rem);
+  line-height: 1;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+}
+
+.subtitle-text {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: rgba(255, 255, 255, 0.5);
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+.section-title {
+  font-family: "Golos Text", sans-serif;
+  font-weight: 800;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  color: #ffffff;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+/* Tag pill */
+.tag-pill {
+  display: inline-block;
+  padding: 4px 14px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 100px;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Stat mini (title slide) */
+.stat-mini {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 16px 24px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 8px;
+}
+
+.stat-mini-num {
+  font-family: "Golos Text", sans-serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: #c9a84c;
+}
+
+.stat-mini-label {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* Info cards */
+.info-card {
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 10px;
+  transition: border-color 0.2s;
+}
+
+.info-card:hover {
+  border-color: rgba(201, 168, 76, 0.3);
+}
+
+.info-card-title {
+  font-weight: 700;
+  font-size: 1rem;
+  color: #ffffff;
+  margin-bottom: 6px;
+}
+
+.info-card-desc {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.45);
+  line-height: 1.5;
+}
+
+/* Fact cards */
+.fact-card {
+  padding: 22px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.fact-icon {
+  font-size: 1.6rem;
+  margin-bottom: 4px;
+}
+
+.fact-num {
+  font-family: "Golos Text", sans-serif;
+  font-weight: 800;
+  font-size: 1.6rem;
+  color: #4a90d9;
+  line-height: 1;
+}
+
+.fact-label {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.5);
+  line-height: 1.4;
+}
+
+/* Chart */
+.chart-lang-label {
+  width: 110px;
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.65);
+  text-align: right;
+  flex-shrink: 0;
+  font-family: "Golos Text", sans-serif;
+}
+
+.chart-value {
+  width: 70px;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.4);
+  text-align: right;
+  flex-shrink: 0;
+}
+
+/* Stats */
+.stats-country {
+  width: 110px;
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.6);
+  flex-shrink: 0;
+}
+
+.stats-value {
+  width: 80px;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.75rem;
+  color: #c9a84c;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.big-stat-card {
+  padding: 18px;
+  background: rgba(201, 168, 76, 0.06);
+  border: 1px solid rgba(201, 168, 76, 0.15);
+  border-radius: 10px;
+  text-align: center;
+}
+
+.big-stat-num {
+  font-family: "Golos Text", sans-serif;
+  font-weight: 800;
+  font-size: 1.6rem;
+  color: #c9a84c;
+  margin-bottom: 4px;
+}
+
+.big-stat-label {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* Conclusion */
+.conclusion-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 16px 20px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+  border-left: 2px solid rgba(201, 168, 76, 0.5);
+}
+
+.conclusion-num {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.75rem;
+  color: #c9a84c;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.conclusion-text {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .nav-dots {
+    right: 12px;
+  }
+  .slide-number {
+    right: 24px;
+    bottom: 20px;
+  }
+  .chart-lang-label {
+    width: 80px;
+    font-size: 0.75rem;
+  }
+  .chart-value {
+    width: 60px;
+    font-size: 0.7rem;
   }
 }
