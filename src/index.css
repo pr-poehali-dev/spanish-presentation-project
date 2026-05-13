@@ -101,6 +101,398 @@
   }
 }
 
+/* ===== DUOLINGO PRESENTATION ===== */
+
+/* Root */
+.duo-root {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  background: #1a1a2e;
+}
+
+.duo-scroll {
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scrollbar-width: none;
+}
+.duo-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.duo-slide {
+  width: 100%;
+  height: 100vh;
+  min-height: 100vh;
+  position: relative;
+  scroll-snap-align: start;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Confetti dots background */
+.duo-confetti-bg {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(
+      circle at 15% 25%,
+      rgba(88, 204, 2, 0.12) 0%,
+      transparent 40%
+    ),
+    radial-gradient(
+      circle at 80% 70%,
+      rgba(255, 200, 0, 0.1) 0%,
+      transparent 40%
+    ),
+    radial-gradient(
+      circle at 60% 15%,
+      rgba(28, 176, 246, 0.08) 0%,
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 30% 80%,
+      rgba(206, 130, 255, 0.08) 0%,
+      transparent 30%
+    );
+  pointer-events: none;
+}
+
+/* Nav */
+.duo-nav {
+  position: fixed;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 100;
+}
+
+.duo-nav-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  position: relative;
+}
+.duo-nav-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: scale(1.15);
+}
+.duo-nav-btn:hover .duo-nav-label {
+  opacity: 1;
+  transform: translateX(0);
+}
+.duo-nav-btn-active {
+  background: #58cc02;
+  border-color: #58cc02;
+  transform: scale(1.15);
+  box-shadow: 0 0 12px rgba(88, 204, 2, 0.5);
+}
+
+.duo-nav-emoji {
+  font-size: 15px;
+}
+.duo-nav-label {
+  position: absolute;
+  right: 46px;
+  top: 50%;
+  transform: translateY(-50%) translateX(6px);
+  white-space: nowrap;
+  font-size: 11px;
+  font-family: "Golos Text", sans-serif;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.7);
+  background: rgba(0, 0, 0, 0.6);
+  padding: 3px 9px;
+  border-radius: 20px;
+  opacity: 0;
+  transition: all 0.2s ease;
+  pointer-events: none;
+}
+
+/* Slide number */
+.slide-num-duo {
+  position: absolute;
+  bottom: 22px;
+  right: 70px;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.2);
+  letter-spacing: 0.1em;
+}
+
+/* Typography */
+.duo-title-main {
+  font-family: "Golos Text", sans-serif;
+  font-weight: 900;
+  font-size: clamp(2.8rem, 7vw, 5.5rem);
+  line-height: 1.05;
+  color: #fff;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+
+.duo-subtitle {
+  font-family: "Golos Text", sans-serif;
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.6;
+}
+
+.duo-section-title {
+  font-family: "Golos Text", sans-serif;
+  font-weight: 800;
+  font-size: clamp(1.7rem, 4vw, 2.6rem);
+  color: #fff;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+.duo-body-text {
+  font-family: "Golos Text", sans-serif;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.55);
+  line-height: 1.6;
+}
+
+.duo-small-note {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.35);
+  font-family: "IBM Plex Mono", monospace;
+}
+
+/* Badge / pill */
+.duo-badge {
+  display: inline-block;
+  padding: 5px 14px;
+  background: rgba(88, 204, 2, 0.15);
+  border: 1.5px solid rgba(88, 204, 2, 0.35);
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #58cc02;
+  letter-spacing: 0.03em;
+  font-family: "Golos Text", sans-serif;
+}
+
+.duo-chip {
+  display: inline-block;
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1.5px solid rgba(255, 255, 255, 0.12);
+  border-radius: 100px;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.75);
+  font-family: "Golos Text", sans-serif;
+  font-weight: 600;
+}
+
+/* Owl big */
+.duo-owl-big {
+  font-size: clamp(4rem, 10vw, 7rem);
+  margin-bottom: 16px;
+  filter: drop-shadow(0 0 30px rgba(88, 204, 2, 0.4));
+  animation: owlBob 3s ease-in-out infinite;
+}
+@keyframes owlBob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+/* Cards */
+.duo-card {
+  padding: 18px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 2px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  transition:
+    border-color 0.2s,
+    transform 0.2s;
+  cursor: default;
+}
+.duo-card:hover {
+  border-color: rgba(88, 204, 2, 0.35);
+  transform: translateY(-3px);
+}
+.duo-card-title {
+  font-family: "Golos Text", sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #fff;
+  margin-bottom: 5px;
+}
+.duo-card-text {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.45);
+  line-height: 1.4;
+}
+
+/* Stat cards */
+.duo-stat-card {
+  padding: 20px 14px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 2px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  text-align: center;
+  transition: transform 0.2s;
+}
+.duo-stat-card:hover {
+  transform: translateY(-3px);
+}
+.duo-stat-num {
+  font-family: "Golos Text", sans-serif;
+  font-weight: 800;
+  font-size: 1.4rem;
+  color: #58cc02;
+  margin-bottom: 2px;
+}
+.duo-stat-label {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* Tip box */
+.duo-tip-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px 20px;
+  background: rgba(255, 200, 0, 0.07);
+  border: 1.5px solid rgba(255, 200, 0, 0.2);
+  border-radius: 14px;
+}
+.duo-tip-text {
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.5;
+}
+.duo-tip-text b {
+  color: #ffc800;
+}
+
+/* Chart */
+.duo-chart-rank {
+  width: 22px;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.3);
+  text-align: center;
+  flex-shrink: 0;
+}
+.duo-chart-flag {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  line-height: 1;
+}
+.duo-chart-name {
+  width: 105px;
+  font-family: "Golos Text", sans-serif;
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.75);
+  font-weight: 600;
+  flex-shrink: 0;
+}
+.duo-chart-val {
+  width: 65px;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.4);
+  text-align: right;
+  flex-shrink: 0;
+}
+
+/* Fact cards */
+.duo-fact-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px 18px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 2px solid rgba(255, 255, 255, 0.07);
+  border-radius: 14px;
+  border-left: 3px solid #ff4b4b;
+  transition: border-color 0.2s;
+}
+.duo-fact-card:hover {
+  border-color: rgba(255, 75, 75, 0.4);
+}
+.duo-fact-text {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.5;
+}
+
+/* Finish */
+.duo-step {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 13px 18px;
+  background: rgba(88, 204, 2, 0.06);
+  border: 1.5px solid rgba(88, 204, 2, 0.18);
+  border-radius: 12px;
+}
+.duo-step-num {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #58cc02;
+  color: #fff;
+  font-weight: 800;
+  font-size: 13px;
+  font-family: "Golos Text", sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.duo-step-text {
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.duo-final-badge {
+  padding: 14px 32px;
+  background: linear-gradient(135deg, #58cc02, #3da800);
+  border-radius: 100px;
+  font-family: "Golos Text", sans-serif;
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: #fff;
+  box-shadow: 0 8px 24px rgba(88, 204, 2, 0.4);
+  animation: pulseBadge 2s ease-in-out infinite;
+}
+@keyframes pulseBadge {
+  0%,
+  100% {
+    box-shadow: 0 8px 24px rgba(88, 204, 2, 0.4);
+  }
+  50% {
+    box-shadow: 0 8px 36px rgba(88, 204, 2, 0.65);
+  }
+}
+
+/* ===== OLD PRESENTATION LAYOUT (kept for compatibility) ===== */
 /* Presentation Layout */
 .presentation-root {
   width: 100vw;
